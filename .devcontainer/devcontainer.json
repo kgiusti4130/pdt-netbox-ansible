@@ -1,9 +1,9 @@
 {
-	"name": "wandynamics-demo01",
+	"name": "pdt-dev04",
 	"context": ".",
 	"workspaceFolder": "/workspace",
 	"dockerComposeFile": "docker-compose.yml",
-	"service": "wandynamics-demo01",
+	"service": "pdt-dev04",
 	"extensions": [
 		"redhat.vscode-yaml",
 		"ms-python.python",

@@ -17,5 +17,5 @@ RUN pip3 install -r requirements.txt
 RUN ansible-galaxy collection install -r requirements.yml --force
 RUN echo 'alias python="python3"' >> ~/.bashrc
 RUN echo 'alias pip="pip3"' >> ~/.bashrc
-LABEL maintainer="Kevin Giusti <kgiusti@wandynamics.com>" \
+LABEL maintainer="Kevin Giusti <giustik@peopledriven.com>" \
       version="1.0"
