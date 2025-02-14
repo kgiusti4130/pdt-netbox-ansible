@@ -1,0 +1,18 @@
+{
+  device_list(site: "tol") {
+    name
+    status
+    primary_ip4 {
+      address
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

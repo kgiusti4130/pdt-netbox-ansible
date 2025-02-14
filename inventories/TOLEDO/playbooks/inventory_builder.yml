@@ -1,0 +1,39 @@
+- name: Query Netbox for Devices and Build Inventory
+  connection: local
+  hosts: localhost
+  gather_facts: false
+  vars:
+    site_name: TOLEDO
+    nb_token: <redacted>
+    nb_graphql_url: http://127.0.0.1:8000/graphql/
+  tasks:
+
+###########################################
+# GraphQL queries to register variables:
+###########################################
+
+    - name: GraphQL Query to grab devices
+      uri:
+        url: '{{ nb_graphql_url }}'
+        validate_certs: no
+        method: POST
+        headers:
+          Authorization: 'Token {{ nb_token }}'
+        body_format: json
+        body:
+          query: '{{ lookup("template", "../queries/devices.graphql") }}'
+      register: nb_device_list
+
+    - name: Set Netbox Device List Variable
+      set_fact:
+        nb_device_list: '{{ nb_device_list.json.data }}'
+
+###########################################
+# Generate inventory file
+###########################################
+
+    - name: Generate graphql_inventory.yml file
+      template:
+        src: ../templates/inventory.j2
+        dest: ../graphql_inventory.yml
+
